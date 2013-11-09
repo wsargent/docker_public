@@ -1,7 +1,7 @@
 FROM base
 
 # this forces dpkg not to call sync() after package extraction and
-speeds up install
+# speeds up install
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 # we don't need and apt cache in a container
 RUN echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
