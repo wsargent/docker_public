@@ -6,6 +6,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 # we don't need and apt cache in a container
 RUN echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
 
+RUN apt-get install -y software-properties-common
 RUN apt-add-repository ppa:rquillo/ansible
 RUN apt-get update
 RUN apt-get install -y ansible
