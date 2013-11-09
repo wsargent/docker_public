@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-BOX_NAME = ENV['BOX_NAME'] || "ubuntu"
-BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64.box"
-VF_BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64_vmware_fusion.box"
+BOX_NAME = ENV['BOX_NAME'] || "docker-ubuntu-12.04.3"
+BOX_URI = ENV['BOX_URI'] || "https://oss-binaries.phusionpassenger.com/vagrant/boxes/ubuntu-12.04.3-amd64-vbox.box"
+VF_BOX_URI = ENV['BOX_URI'] || "https://oss-binaries.phusionpassenger.com/vagrant/boxes/ubuntu-12.04.3-amd64-vmwarefusion.box"
 AWS_REGION = ENV['AWS_REGION']
 AWS_AMI    = ENV['AWS_AMI']
 
@@ -60,7 +60,7 @@ Vagrant::Config.run do |config|
       "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list;" \
       "apt-get update -qq; apt-get install -q -y --force-yes lxc-docker; "
     # Add Ubuntu raring backported kernel
-    pkg_cmd << "apt-get update -qq; apt-get install -q -y linux-image-generic-lts-raring; "
+    pkg_cmd << "apt-get update -qq;"
     # Add guest additions if local vbox VM. As virtualbox is the default provider,
     # it is assumed it won't be explicitly stated.
     if ENV["VAGRANT_DEFAULT_PROVIDER"].nil? && ARGV.none? { |arg| arg.downcase.start_with?("--provider") }
